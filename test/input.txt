@@ -1,0 +1,47 @@
+# Beardown Test
+## Heading 2
+### Heading 3
+---
+
+*Bold*
+/Italic/
+_Underline_
+-Strike-
+[Link](www.link.com)
+
+* List
+* List
+
+1. Order List
+2. Order List
+
+> Quote
+> Quote
+
+- Todo
++ Done
+
+testline
+testline
+
+testline
+
+`code`
+
+``` rb
+Code Block
+```
+
+::Mark::
+
+[assets/kramdown test example.md]
+
+[assets/250900_20180203192759_1.png]
+
+[[Beardown]]
+
+[assets/bear_sketch@2x.jpg]
+[assets/bear_sketch@2x.jpeg]
+
+#crack
+
