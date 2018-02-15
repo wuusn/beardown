@@ -52,18 +52,27 @@ module Beardown
 
     def scan_blocks(s)
       @blocks.each do |e|
+        begin
         unless s.scan(Document.const_get("REGEXP_#{e.to_s.upcase}")).nil?
           return send "scan_#{e.to_s}", s
         end
+        rescue NameError
+          next
+        end
       end
+      return s.string
     end
 
     def scan_spans(s)
       @spans.each do |e|
+        begin
         res = s.scan(Document.const_get("REGEXP_#{e.to_s.upcase}"))
         return send "scan_#{e.to_s}", StringScanner.new(res) unless res.nil?
+        rescue NameError
+          next
+        end
       end
-      return s.to_s
+      return s.string
     end
 
     require "beardown/blocks/head"

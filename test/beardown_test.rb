@@ -13,6 +13,13 @@ class BeardownTest < Minitest::Test
     Beardown.new(text).to_html
   end
 
+  def filetest(file_pre)
+    dir = File.dirname(__FILE__) + "/examples"
+    input = File.open("#{dir}/#{file_pre}.txt").read
+    output = File.open("#{dir}/#{file_pre}.html").read
+    assert_equal  parse(input), output
+  end
+
   def test_headings
     assert_equal parse("# Beardown Test"), "<h1>Beardown Test</h1>\n"
     assert_equal parse("## Heading 2\n"), "<h2>Heading 2</h2>\n"
@@ -25,8 +32,11 @@ class BeardownTest < Minitest::Test
   end
 
   def test_list_unordered
-    input = "* list1\n* list2\n* list3"
-    output = "<ul><li>list1</li><li>list2</li></ul>\n"
+    input = "* list1\n\t* list2\n\t* list2\n* list1"
+    output = "<ul><li>list1<ul><li>list2</li><li>list2</li></ul><li>list1</li></ul>\n"
+    assert_equal parse(input), output
+    #filetest "ul1"
+    filetest "ul2"
   end
   def test_bold_italic_underline
     #assert_equal parse("_/*test*/_"), "<p><b><i><u>test</u></i></b></p>"
