@@ -6,9 +6,10 @@ module Beardown
     def initialize(text)
       @text = text
       @blocks = [:head, :line_separator, :list_unordered, :list_ordered,
-                 :qupte, :todolist, :codeblock, :asset, :blankline, :p]
+                 :quote, :list_todo, :codeblock, :asset, :blankline, :p]
       @spans  = [:bold, :italic, :underline, :strike, :linkurl, :linkpost,
                  :mark, :hashtag, :codespan]
+      @extensions = Array.new
     end
 
     def title
@@ -45,6 +46,7 @@ module Beardown
       while !s.eos? do
         res << scan_blocks(s)
       end
+      res << add_extensions
       @html = res
     end
 
@@ -75,12 +77,20 @@ module Beardown
       return s.string
     end
 
+    def add_extensions
+      res = String.new
+      @extensions.each do |ex|
+        res << send(ex)
+      end
+      res
+    end
+
     require "beardown/blocks/head"
     require "beardown/blocks/line_separator"
     require "beardown/blocks/list_unordered"
     require "beardown/blocks/list_ordered"
     require "beardown/blocks/quote"
-    require "beardown/blocks/todolist"
+    require "beardown/blocks/list_todo"
     require "beardown/blocks/codeblock"
     require "beardown/blocks/asset"
     require "beardown/blocks/blankline"

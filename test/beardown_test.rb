@@ -32,12 +32,17 @@ class BeardownTest < Minitest::Test
   end
 
   def test_list_unordered
-    input = "* list1\n\t* list2\n\t* list2\n* list1"
-    output = "<ul><li>list1<ul><li>list2</li><li>list2</li></ul><li>list1</li></ul>\n"
-    assert_equal parse(input), output
-    #filetest "ul1"
-    filetest "ul2"
+    filetest "ulist1"
   end
+
+  def test_list_ordered
+    filetest "olist1"
+  end
+
+  def test_list_todo
+    filetest "todolist1"
+  end
+
   def test_bold_italic_underline
     #assert_equal parse("_/*test*/_"), "<p><b><i><u>test</u></i></b></p>"
   end
