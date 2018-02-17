@@ -6,5 +6,5 @@ def scan_quote(s)
 end
 
 def convert_quote(content)
-  "<blockquote>#{scan_spans(content)}</blockquote>\n"
+  "<blockquote>#{scan_spans(StringScanner.new(content))}</blockquote>\n"
 end

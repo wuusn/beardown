@@ -47,32 +47,11 @@ class BeardownTest < Minitest::Test
     filetest "quote1"
   end
 
+  def test_codeblock
+    filetest "codeblock1"
+  end
+
   def test_bold_italic_underline
     #assert_equal parse("_/*test*/_"), "<p><b><i><u>test</u></i></b></p>"
   end
-
-  def test_bold
-  end
-
-  def test_italic
-  end
-
-  def test_underline
-  end
-
-  def strike
-  end
-
-  def test_link
-  end
-
-  def test_list
-  end
-
-  def test_list_ordered
-  end
-
-  def test_quote
-  end
-
 end
