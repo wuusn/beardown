@@ -43,6 +43,10 @@ class BeardownTest < Minitest::Test
     filetest "todolist1"
   end
 
+  def test_quote
+    filetest "quote1"
+  end
+
   def test_bold_italic_underline
     #assert_equal parse("_/*test*/_"), "<p><b><i><u>test</u></i></b></p>"
   end
