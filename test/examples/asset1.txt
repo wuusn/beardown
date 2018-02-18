@@ -1,0 +1,4 @@
+[assets/test.sdf]
+[assets/test.png]
+[assets/test.jpg]
+[assets/test.gif]

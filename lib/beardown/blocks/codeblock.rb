@@ -1,10 +1,14 @@
-REGEXP_CODEBLOCK = /^```\n((.+\n)*)^```\n?/
+REGEXP_CODEBLOCK = /^```(.*)\n((.+\n)*)^```\n?/
 
 def scan_codeblock(s)
-  content = s[1]
-  convert_codeblock(content)
+  style = case s[1]
+          when "" then "multiline"
+          else s[1].strip
+          end
+  content = s[2]
+  convert_codeblock(content,style)
 end
 
-def convert_codeblock(content)
-  %(<pre><code class="code-multiline">#{content}</code></pre>\n)
+def convert_codeblock(content, style)
+  %(<pre><code class="code-#{style}">#{content}</code></pre>\n)
 end

@@ -49,6 +49,11 @@ class BeardownTest < Minitest::Test
 
   def test_codeblock
     filetest "codeblock1"
+    filetest "codeblock2"
+  end
+
+  def test_asset
+    filetest "asset1"
   end
 
   def test_bold_italic_underline
