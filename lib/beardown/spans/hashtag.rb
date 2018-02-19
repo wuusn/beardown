@@ -11,6 +11,7 @@ REGEXP_HASHTAG = /#([^#^\s]+)/
   end
 
   define_method :"convert_hashtag#{attr}" do |tag|
+    @tags << tag
     sym = case attr
           when "" then ""
           else "#"

@@ -8,9 +8,7 @@ def scan_head(s)
 end
 
 def render_head(id, content)
-  if id==1
-    @title = content unless defined?(@title)
-  end
+  @title << content if id==1
 end
 
 def convert_head(id,content)

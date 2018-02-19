@@ -13,37 +13,42 @@ module Beardown
                  :bold, :italic, :underline, :strike, :mark_nospace, :mark]
 
       @extensions = Array.new
+      @title = String.new
+      @tags = Array.new
+
+      html
     end
 
     def title
-      return @title unless defined?(@title).nil?
+      @title
     end
 
     def tags
-      return @tags unless defined?(@tags).nil?
+      @tags
     end
 
-    def assets
-      return @assets unless defined?(@assets).nil?
-    end
+    # def assets
+    #  return @assets unless defined?(@assets).nil?
+    #end
 
     def content
-      return @content unless defined?(@content).nil?
+      return @content if defined? @content
+      @content = @text.delete "\n", "\t", "\s", "#", "*", "`", "*", "-", "_", "=", "+", "[", "]", ":", "<", ">"
     end
 
     def summary
-      return @summary unless defined?(@summary).nil?
+      return @summary if defined? @summary
       s = content
       @summary = s[0...30]
     end
 
     def html
-      return @html unless defined?(@html).nil?
+      return @html if defined? @html
       to_html
     end
 
     def to_html
-      return @html unless defined?(@html).nil?
+      return @html if defined? @html
       s = StringScanner.new @text
       res = String.new
       while !s.eos? do
