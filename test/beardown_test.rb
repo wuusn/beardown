@@ -20,6 +20,11 @@ class BeardownTest < Minitest::Test
     assert_equal  parse(input), output
   end
 
+  def output_file(text)
+    dir = File.dirname(__FILE__) + "/examples"
+    File.open("#{dir}/output.html", "w") {|f| f.write(text)}
+  end
+
   def test_headings
     assert_equal parse("# Beardown Test"), "<h1>Beardown Test</h1>\n"
     assert_equal parse("## Heading 2\n"), "<h2>Heading 2</h2>\n"
@@ -56,7 +61,57 @@ class BeardownTest < Minitest::Test
     filetest "asset1"
   end
 
+  def test_blankline
+    filetest "blankline1"
+  end
+
+  def test_p
+    filetest "p1"
+  end
+
+  def test_mix_h1_and_ulist
+    input = "* list1\n# head1"
+    #output_file(parse(input))
+    output = "<ul><li>list1</li></ul>\n<h1>head1</h1>\n"
+    assert_equal parse(input), output
+  end
+
+  def test_codespan
+    filetest "codespan1"
+  end
+
+  def test_hashtag_full
+    filetest "hashtag_full1"
+    assert_equal parse("#d#"), %(<p><a href="../tag/d/" class="hashtag">#d#</a></p>\n)
+    #assert_equal parse("#d##"),%()
+  end
+
   def test_bold_italic_underline
-    #assert_equal parse("_/*test*/_"), "<p><b><i><u>test</u></i></b></p>"
+    assert_equal parse("/test/"), "<p><i>test</i></p>\n"
+    assert_equal parse("_/*test*/_"), "<p><u><i><b>test</b></i></u></p>\n"
+  end
+
+  def test_linkpost
+    assert_equal parse("123[[Beardown]]456"),
+      %(<p>123<a href="../Beardown/">Beardown</a>456</p>\n)
+  end
+
+  def test_linkurl
+    filetest "linkurl1"
+  end
+
+  def test_mark
+    filetest "mark1"
   end
 end
+
+
+
+
+
+
+
+
+
+
+

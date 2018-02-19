@@ -9,7 +9,7 @@ end
 
 def render_head(id, content)
   if id==1
-    @title = @title || content
+    @title = content unless defined?(@title)
   end
 end
 

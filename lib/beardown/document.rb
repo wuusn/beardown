@@ -5,42 +5,45 @@ module Beardown
 
     def initialize(text)
       @text = text
+
+      # These orders are important
       @blocks = [:head, :line_separator, :list_unordered, :list_ordered,
                  :quote, :list_todo, :codeblock, :asset, :blankline, :p]
-      @spans  = [:bold, :italic, :underline, :strike, :linkurl, :linkpost,
-                 :mark, :hashtag, :codespan]
+      @spans  = [:codespan, :hashtag_full, :hashtag_full_nospace, :hashtag, :linkpost, :linkurl,
+                 :bold, :italic, :underline, :strike, :mark_nospace, :mark]
+
       @extensions = Array.new
     end
 
     def title
-      return @title unless @title.nil?
+      return @title unless defined?(@title).nil?
     end
 
     def tags
-      return @tags unless @tags.nil?
+      return @tags unless defined?(@tags).nil?
     end
 
     def assets
-      return @assets unless @assets.nil?
+      return @assets unless defined?(@assets).nil?
     end
 
     def content
-      return @content unless @content.nil?
+      return @content unless defined?(@content).nil?
     end
 
     def summary
-      return @summary unless @summary.nil?
+      return @summary unless defined?(@summary).nil?
       s = content
       @summary = s[0...30]
     end
 
     def html
-      return @html unless @html.nil?
+      return @html unless defined?(@html).nil?
       to_html
     end
 
     def to_html
-      return @html unless @html.nil?
+      return @html unless defined?(@html).nil?
       s = StringScanner.new @text
       res = String.new
       while !s.eos? do
@@ -54,24 +57,51 @@ module Beardown
 
     def scan_blocks(s)
       @blocks.each do |e|
-        begin
+        #begin
         unless s.scan(Document.const_get("REGEXP_#{e.to_s.upcase}")).nil?
           return send "scan_#{e.to_s}", s
         end
-        rescue NameError
-          next
-        end
+        #rescue NameError
+        #  next
+        #end
       end
       return s.string
     end
 
-    def scan_spans(s)
+    def regexp_span_like
+      return @regexp_span_like unless defined?(@regexp_span_like).nil?
+      res = String.new
       @spans.each do |e|
         begin
-        res = s.scan(Document.const_get("REGEXP_#{e.to_s.upcase}"))
-        return send "scan_#{e.to_s}", StringScanner.new(res) unless res.nil?
+        start_char = Document.const_get("START_CHAR_#{e.to_s.upcase}")
+        res << "\\#{start_char}"
         rescue NameError
           next
+        end
+      end
+      @regexp_span_like = /[#{res}]/
+    end
+
+    def scan_spans(s)
+      while !s.eos?
+        last_pos = s.pos
+        like = s.scan_until regexp_span_like
+        if like
+          s.pos -= 1
+          pre = s.pre_match.to_s
+          @spans.each do |e|
+            #begin
+            match = s.scan Document.const_get("REGEXP_#{e.to_s.upcase}")
+            #rescue NameError
+            #  next
+            #end
+            if match
+              return pre + send("scan_#{e.to_s}", s) + scan_spans(StringScanner.new(s.rest))
+            end
+          end
+          s.pos = last_pos + 1
+        else
+          break
         end
       end
       return s.string
