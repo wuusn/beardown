@@ -1,0 +1,167 @@
+# Beardown Test2
+> man, it's a great hard work, are you sure to do this?
+
+> 如果有心要做，要遵循KISS原则。吸取三家优点，去除三家缺点，理解三家透彻！
+
+## Parser
+* [Polar Bear markup language](http://www.bear-writer.com/faq/Markup%20:%20Markdown/Polar%20Bear%20markup%20language/)
+* Heading 1-6 
+```
+# 
+##
+###
+####
+#####
+######
+```
+	* start of line
+	* end of space
+* Line Separator
+`---`
+	* just three `-` in a line
+* Bold
+`*b*`
+	* *d* **d** *d** **d* **d*d*
+	* start with one `*` and end with `*`
+* italic
+`/i/`
+	* //d  no
+	* d/ /d  no
+	* / f/ no
+	* /f / no 
+	* /d d/  yes
+	* two `/` with no space after and before 
+* underline
+`_xxx_`
+	* `_d_` _d_ true
+	* `__d_` __d_ ture
+	* `___________` ___________ true
+	* `_d_d` _d_d false
+	* `d_d_` d_d_ false
+	* two `_` with space before and after
+* strikethrough
+`-s-` 
+	* `-s-` -s-  true
+	*  `-s-d` -s-d no
+	* `d-s-` d-s- no
+	* `d -s- d` true
+	* two `-` with space before and after
+* link
+`[link](http://www.bear-writer.com)`
+	* `[]()` []() no
+	* `[](www.google.com)` [](www.google.com)  no
+	* `[d](d)` [d](d) true
+	* `[1](1)` [1](1) true
+	* `d[d](d)d` d[d](d)d true
+	* `d[d]d(d)` d[d]d(d) false
+	* `[ ]( )`  [ ]( ) true but not allowed
+	* `[]()` with something in them
+* marker
+`::d::`
+	* `:::d::` :::d:: true , mark with `:d`
+	* `:::d:::` :::d::: true, mark with `:d:`, should ignore this ?
+	* `::::` :::: seems true
+	* `::::d::::` ::::d::::  false
+	* `:::::d:::::` :::::d::::: false
+	* `:: ::` :: :: false
+	* `::d ::` ::d :: false
+	* `::d: ::` ::d :: false
+	* `::d d::` ::d d:: true
+	* `::d::`with no space after and before
+* unordered list
+`*`
+	* start of line
+	* with a space after
+	*  * d false
+	* cannot nested
+* ordered list
+	1. 1
+	2. 2
+	3. 3
+	4. 4
+	5. 5
+	6. 6
+	7. 7
+	
+82748923748972384. it is ok
+	* start of line with a number and a dot
+* todo
+`- todo`
+	* start of line can with space padding
+	* space after
+	* one `-`
+* done todo
+`+ done`
+	+ ok
+	* similar with todo up there
+* quote
+`> d`
+	* start with line
+	             > ddd false
+	* must in the first place
+	* cannot nest itself or other markdown
+* tag
+	* `#tag`
+	* #crack fff
+* multiwords tag and nested tag
+#crack/crack crack# #
+#tag#
+	* with # end
+
+> 复杂部分
+* code highlight with specify language
+	*  [Show code highlighting in your code snippets - Bear - Faq and support](http://www.bear-writer.com/faq/Code%20Snippets/Show%20code%20highlighting%20in%20your%20code%20snippets/)
+
+* code
+``d`d`d`````sdasd
+	* last 2  `
+* code block
+```rb
+print "hello"
+```
+```
+	* dfdf
+	* `d`
+```
+	* start of line
+	* can specify language
+* file
+`drag file in bear will store in its database`
+	* sketches
+	* picture
+	* the output plain text is `[assets/filename]`
+	* check if it exists
+* link to other note
+`[[link]]`
+	* [[]] true but not exists
+	* [[d]] true but not exists
+	* [[ ]] false
+	* [[ d]] false
+	* [[ d ]] false
+	* [[d d]] true
+	* [[我的时空恋旅人]]
+	* need to auto change space
+> beardown << kramdown
+	* blank_line 检测空行
+	* block_boundary 边界
+	* block quote >
+	* codeblock
+	* codespan `
+	* emphasis
+	* header
+	* line break
+	* link
+	* list
+	* photograph? not same as kramdown
+## Renderer
+## Convertor
+#tag
+## GEM
+	+ 切换至Minitest
+	- 尝试在test中使用kramdown做beardown测试
+	- 尝试在test 中使用redcarpet做beardown测试
+	- 尝试在test中使用maruku做beardown测试
+
+## BUG?
+	- UTF-8 ?
+#crack

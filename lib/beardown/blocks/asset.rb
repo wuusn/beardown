@@ -1,4 +1,4 @@
-REGEXP_ASSET = /\[assets\/(.+)\]\n?/
+REGEXP_ASSET = /^\[assets\/(.+)\]\n?/
 
 def scan_asset(s)
   filename = s[1]

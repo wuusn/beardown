@@ -1,4 +1,4 @@
-``` rb
+```rb
 	code
 		print
 ```

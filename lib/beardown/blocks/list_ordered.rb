@@ -1,4 +1,4 @@
-REGEXP_LIST_ORDERED = /^(\t*)\s*(\d+)\.\s+(.+)\n?/
+REGEXP_LIST_ORDERED = /^(\t*) *(\d+)\.\s+(.+)\n?/
 def scan_list_ordered(s)
   t_count = s[1].length
   start_num = s[2].to_i

@@ -63,10 +63,13 @@ class BeardownTest < Minitest::Test
 
   def test_blankline
     filetest "blankline1"
+    input = "list1\n\n\n* list1"
+    output_file(parse(input))
   end
 
   def test_p
     filetest "p1"
+    filetest "p2"
   end
 
   def test_mix_h1_and_ulist
@@ -102,6 +105,12 @@ class BeardownTest < Minitest::Test
 
   def test_mark
     filetest "mark1"
+  end
+
+  def test_mix_file
+    dir = File.dirname(__FILE__) + "/examples"
+    input = File.open("#{dir}/text2.txt").read
+    #output_file(parse(input))
   end
 end
 

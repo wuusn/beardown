@@ -1,4 +1,4 @@
-REGEXP_LIST_UNORDERED = /^(\t*)\s*\*\s+(.+)(\n)?/
+REGEXP_LIST_UNORDERED = /^(\t*) *\*\s+(.+)(\n)?/
 def scan_list_unordered(s)
   t_count = s[1].length
   content = s[2]

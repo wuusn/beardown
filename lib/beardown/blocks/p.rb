@@ -1,10 +1,11 @@
-REGEXP_P = /^(.+)\n?/
+REGEXP_P = /^(\s*)(.+)\n?/
 
 def scan_p(s)
-  content = s[1]
-  convert_p content
+  indent = s[1].length
+  content = s[2]
+  convert_p indent, content
 end
 
-def convert_p(content)
-  "<p>#{scan_spans(StringScanner.new(content))}</p>\n"
+def convert_p(indent, content)
+  "<p>#{"&emsp;"*indent}#{scan_spans(StringScanner.new(content))}</p>\n"
 end

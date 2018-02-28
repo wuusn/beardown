@@ -1,4 +1,4 @@
-REGEXP_CODEBLOCK = /^```(.*)\n((.+\n)*)^```\n?/
+REGEXP_CODEBLOCK = /^```(.*)\n((.*\n)*)^```\n?/
 
 def scan_codeblock(s)
   style = case s[1]

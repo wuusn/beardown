@@ -1,0 +1,73 @@
+# Miyano 0.2
+> Miyano 0.2
+* 基本
+	* 部署于 Github Pages
+	* Markdown 使用 ::Bearnote::
+
+* Bearnote
+	* [Bear - Notes for iPhone, iPad and Mac](http://www.bear-writer.com)
+	* [Beardown](https://github.com/wuusn/beardown) - Bear 的文本至 Html 转换器 （只有这是轮子，其他都是装配活）
+	* 将 Bear 中的 note 以 Bear note 的格式导出（自动打包图片文件）
+	* Miyano 将解析 Bearnote，包含 tag 以及图片文件，输出的布局将与 Bear App 中一致 （尽力！！！）
+
+* Miyano 使用说明
+::新手注意：git, gem, Bash 要会！::
+	* 几个指令
+		* 安装  `$ gem install miyano`
+		* 创建一个新 blog `$ miyano new [myblog]`
+		* 走进去 `$ cd [myblog]`
+	::接下来的操作都需要在你刚走进去的 blog 的根目录下执行::
+		* 构建 `[myblog] miyano build`
+		* try 一下  `[myblog]$ miyano try` 
+			* 这就是开个本地服务器给看看模样的，我就不起什么 serve 名字了，这条命令就是 try 踹，try 完就是要踹掉的，我们可是要搭在 Github Page 上的！
+		* *发布了！* `[myblog]$ miyano depoly`
+			* 需要链接你的 Github Page 的仓库
+			* 第一次运行需要填仓库地址
+			* 如果没有在本地部署过 git 可能还要输入该仓库的账密
+			* 这是实际就是 git 里的命令，push 过去， 推倒！
+			* 这条命令包含了 `build` 命令
+		::如果你已经有Github Page了，你可以再键一个其他的库，参照::
+			- 一个账号下另一个Github pages
+
+* Bear 使用说明
+	* -没什么好说明的，软件上基本都有，语法快捷键啥的都有-
+	* 官方的延伸阅读推荐
+		* FAQ都读一遍就差不多了 [Bear - Faq and support](http://www.bear-writer.com/faq/)
+		* 如果你不想都读，我捡几个对我有用的，看上去多其实内容很少，很快就能读完
+		[Nested Tags](http://www.bear-writer.com/faq/Tags%20&%20Linking/Nested%20Tags/)
+		[Rename and Delete Tags](http://www.bear-writer.com/faq/Tags%20&%20Linking/Rename%20and%20Delete%20Tags/)
+		[Linking notes](http://www.bear-writer.com/faq/Tags%20&%20Linking/Linking%20notes/)
+		[How to use Tag Autocomplete and Note Autocomplete](http://www.bear-writer.com/faq/Autocomplete/How%20to%20use%20Tag%20Autocomplete%20and%20Note%20Autocomplete/)
+		[Insert Attachments - Bear - Faq and support](http://www.bear-writer.com/faq/Attachments/Insert%20Attachments/)
+		[Add Sketches to your notes](http://www.bear-writer.com/faq/Attachments/Add%20Sketches%20to%20your%20notes/)
+		[Hide the Sidebar and Note List on Mac and iPad](http://www.bear-writer.com/faq/Hide%20the%20Sidebar%20and%20Note%20List%20on%20Mac%20and%20iPad/)
+		[Drag & Drop on iPad and iPhone](http://www.bear-writer.com/faq/Drag%20&%20Drop%20on%20iPad%20and%20iPhone/)
+
+* 没有的东西
+	* 分类 category。我们用 Bear 的都是打标签 tag 的，要什么 category！
+	* 评论。 不好意思，没有人给我评论，所以我觉得这个东西放着也凉。要有需要的可以插个 Disqus 。还是用邮箱交流真诚点！～
+	* YAML Front Matter。就是这个东西，烦人的很，之前用 Jekyll 那一套，总是要在 MD 文章前面搞点东西！
+```
+---
+layout: post
+title: Blogging Like a Hacker
+---
+```
+::这个东西我这辈子再也不想看到= =， 特别是那三个杠杠::
+
+* Bugs
+	+ 文章排序
+	+ h1 and title
+	+ 中文编码
+	+ file modified time
+	+ post.time
+	- 摘要？
+	- don't mistake the working directory - raise error
+	- test on github with another repo
+	- depoly test on clean repo
+	- 取消空格变为_
+	+ depoly test on unclean repo
+	+ fix https
+	+ site to _site
+
+#dododo

@@ -1,4 +1,4 @@
-REGEXP_LIST_TODO = /^(\t*)\s*([\+\-])\s+(.+)\n?/
+REGEXP_LIST_TODO = /^(\t*) *([\+\-])\s+(.+)\n?/
 
 def scan_list_todo(s)
   t_count = s[1].length
@@ -15,7 +15,7 @@ def scan_list_todo(s)
 end
 
 def convert_list_todo(t_count, check_status, content)
-  ul_open = %(<ul class='todo-list'><li><svg width="16" height="16" viewBox="0 0 16 16"><use xlink:href="#todobox-#{check_status}"></use></svg>)
+  ul_open = %(<ul class='todo-list #{check_status}'><li><svg width="16" height="16" viewBox="0 0 16 16"><use xlink:href="#todobox-#{check_status}"></use></svg>)
   ul_close = %(</li></ul>)
   "<ul>" * t_count + ul_open + scan_spans(StringScanner.new(content)) + ul_close + "</ul>" * t_count + "\n"
 end
