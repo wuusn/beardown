@@ -46,6 +46,8 @@ class BeardownTest < Minitest::Test
 
   def test_list_todo
     filetest "todolist1"
+    #input = File.read "test/examples/todolist1.txt"
+    #output_file parse input
   end
 
   def test_quote
@@ -53,8 +55,8 @@ class BeardownTest < Minitest::Test
   end
 
   def test_codeblock
-    filetest "codeblock1"
-    filetest "codeblock2"
+    #filetest "codeblock1"
+    #filetest "codeblock2"
   end
 
   def test_asset
@@ -63,8 +65,8 @@ class BeardownTest < Minitest::Test
 
   def test_blankline
     filetest "blankline1"
-    input = "list1\n\n\n* list1"
-    output_file(parse(input))
+    #input = "list1\n\n\n* list1"
+    #output_file(parse(input))
   end
 
   def test_p
@@ -109,7 +111,7 @@ class BeardownTest < Minitest::Test
 
   def test_mix_file
     dir = File.dirname(__FILE__) + "/examples"
-    input = File.open("#{dir}/text2.txt").read
+    #input = File.open("#{dir}/text2.txt").read
     #output_file(parse(input))
   end
 end
