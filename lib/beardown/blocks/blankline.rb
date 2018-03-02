@@ -1,14 +1,13 @@
 module Beardown
   class Document
-    REGEXP_BLANKLINE = /^(\s*\n)+/
+    REGEXP_BLANKLINE = /^ *\n/
 
     def scan_blankline(s)
-      len = s[0].length
-      convert_blankline len
+      convert_blankline
     end
 
-    def convert_blankline(len)
-      "<br>" * len + "\n"
+    def convert_blankline
+      "<br>\n"
     end
   end
 end
