@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["wuusn"]
   spec.email         = ["wuusin@gmail.com"]
 
-  spec.summary       = %q{A parser and html convertor for BearApp(.bearnote).}
-  spec.homepage      = "https://yuxin.io/beardown"
+  spec.summary       = %q{A html convertor for Bear App's bearnote - Polar Bear markup language.}
+  spec.homepage      = "https://github.com/wuusn/beardown"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
