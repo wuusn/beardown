@@ -88,6 +88,9 @@ class BeardownTest < Minitest::Test
   def test_hashtag_full
     filetest "hashtag_full1"
     assert_equal parse("#d#"), %(<p><a href="../tag/d/" class="hashtag">#d#</a></p>\n)
+    assert_equal parse("c#,"), %(<p>c#,</p>\n)
+    assert_equal parse("#tag1/tag2"), %(<p><a href="../tag/tag1/tag2/" class="hashtag">#tag1/tag2</a></p>\n)
+    assert_equal parse("#碎碎念"), %(<p><a href="../tag/碎碎念/" class="hashtag">#碎碎念</a></p>\n)
     #assert_equal parse("#d##"),%()
   end
 

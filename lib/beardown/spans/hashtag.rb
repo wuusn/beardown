@@ -4,7 +4,7 @@ module Beardown
 
     REGEXP_HASHTAG_FULL = /#([^\s^#][^#]*[^\s^#])#/
     REGEXP_HASHTAG_FULL_NOSPACE = /#([^#^\s]+)#/
-    REGEXP_HASHTAG = /#([\w\-]+)/
+    REGEXP_HASHTAG = /#([^#\s\,]+)/
 
     ["", "_full", "_full_nospace"].each do |attr|
       define_method :"scan_hashtag#{attr}" do |s|
