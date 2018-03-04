@@ -9,7 +9,7 @@ module Beardown
     end
 
     def convert_list_ordered(t_count, start_num, content)
-      "<ol>" * t_count + %(<ol start="#{start_num}"><li>) + scan_spans(StringScanner.new(content)) + "</li></ol>" + "</ol>" * t_count + "\n"
+      "<ol>" * t_count + %(<ol start="#{start_num}" style="counter-reset:ol #{start_num-1};"><li>) + scan_spans(StringScanner.new(content)) + "</li></ol>" + "</ol>" * t_count + "\n"
     end
   end
 end
