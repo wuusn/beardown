@@ -13,12 +13,24 @@ module Beardown
       end
 
       define_method :"convert_hashtag#{attr}" do |tag|
-        @tags << tag.downcase unless @tags.include? tag.downcase
+        tag = tag.downcase
+        render_hashtag tag
         sym = case attr
               when "" then ""
               else "#"
               end
       %(<a href="../tag/#{tag}/" class="hashtag">##{tag+sym}</a>)
+      end
+    end
+
+    def render_hashtag(tag)
+      tag = tag.downcase
+      tags = tag.split "/"
+      _tag = tags[0]
+      @tags << _tag unless @tags.include? _tag
+      tags[1..-1].each do |t|
+        _tag += "/#{t}"
+        @tags << _tag unless @tags.include? _tag
       end
     end
   end

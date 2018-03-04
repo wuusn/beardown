@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    beardown (0.1.0)
+    beardown (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -18,7 +18,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   minitest (~> 5.0)
   rake (~> 10.0)
-  rouge
+  rouge (~> 3.1.1)
 
 BUNDLED WITH
    1.16.1

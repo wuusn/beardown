@@ -94,6 +94,11 @@ class BeardownTest < Minitest::Test
     #assert_equal parse("#d##"),%()
   end
 
+  def test_render_tag
+    bear = Beardown.new "#tag1/tag2/tag3"
+    assert_equal bear.tags, ["tag1", "tag1/tag2", "tag1/tag2/tag3"]
+  end
+
   def test_bold_italic_underline
     assert_equal parse("/test/"), "<p><i>test</i></p>\n"
     assert_equal parse("_/*test*/_"), "<p><u><i><b>test</b></i></u></p>\n"
