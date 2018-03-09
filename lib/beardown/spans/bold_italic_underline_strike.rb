@@ -5,10 +5,10 @@ module Beardown
     START_CHAR_UNDERLINE = "_"
     START_CHAR_STRIKE = "-"
 
-    REGEXP_BOLD = /\*(.+)\*/
-    REGEXP_ITALIC = /\/(.+)\//
-    REGEXP_UNDERLINE = /\_(.+)\_/
-    REGEXP_STRIKE = /\-(.+)\-/
+    REGEXP_BOLD = /\*(.*?[^\s])\*/
+    REGEXP_ITALIC = /\/(.*?[^\s])\//
+    REGEXP_UNDERLINE = /\_(.*?[^\s])\_/
+    REGEXP_STRIKE = /\-(.*?[^\s])\-/
 
     ["bold", "italic", "underline", "strike"].each do |attr|
       define_method :"scan_#{attr}" do |s|

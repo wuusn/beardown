@@ -74,7 +74,7 @@ module Beardown
     end
 
     def regexp_span_like
-      return @regexp_span_like unless defined?(@regexp_span_like).nil?
+      return @regexp_span_like if defined? @regexp_span_like
       res = String.new
       @spans.each do |e|
         begin
