@@ -10,7 +10,7 @@ class BugTest < Minitest::Test
   end
 
   def test_arrow
-    assert_equal parse("This -> This -> This"), "<p>This -> This -> This</p>\n"
+    assert_equal parse("This -> This -> This"), "<p>This -&gt This -&gt This</p>\n"
   end
 
   def test_greedy_with_bold_italic_underline_strike

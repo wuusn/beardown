@@ -10,7 +10,7 @@ module Beardown
     end
 
     def render_head(id, content)
-      @title << content if id==1
+      @title << content if id==1&&@title.empty?
     end
 
     def convert_head(id,content)
