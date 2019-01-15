@@ -96,6 +96,7 @@ class BeardownTest < Minitest::Test
 
   def test_linkurl
     filetest "linkurl1"
+    filetest "miya#17"
   end
 
   def test_mark

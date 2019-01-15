@@ -1,7 +1,7 @@
 module Beardown
   class Document
     # START_CHAR_LINKURL = "[" # duplicate with LINKPOST
-    REGEXP_LINKURL = /\[(.+)\]\((.+)\)/
+    REGEXP_LINKURL = /\[(.+?)\]\((.+?)\)/
 
     def scan_linkurl(s)
       title, url = s[1], s[2]
