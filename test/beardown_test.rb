@@ -107,15 +107,13 @@ class BeardownTest < Minitest::Test
     #input = File.open("#{dir}/text2.txt").read
     #output_file(parse(input))
   end
+
+  def test_html_entities
+    assert_equal parse("13 > 12"), "<p>13 &gt 12</p>\n"
+  end
+
+  def test_tag_hashcolor
+    assert_equal parse("#abcdfF"), %(<p><span class='color-preview' style='background-color:#abcdfF'></span><span class='color-code'><span class='color-hash'>#</span>abcdfF</span></span></p>\n)
+  end
+
 end
-
-
-
-
-
-
-
-
-
-
-

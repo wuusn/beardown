@@ -4,7 +4,7 @@ module Beardown
   class Document
 
     def initialize(text)
-      @text = text
+      @text = text.gsub(/(?<!^)>/, "&gt").gsub("<", "&lt")
 
       # These orders are important
       @blocks = [:head, :line_separator, :list_unordered, :list_ordered,
@@ -12,7 +12,7 @@ module Beardown
       @spans  = [:codespan, :hashtag_full, :hashtag_full_nospace, :hashtag, :linkpost, :linkurl,
                  :bold, :italic, :underline, :strike, :mark_nospace, :mark]
 
-      @extensions = Array.new
+      @extensions = []
       @title = String.new
       @tags = Array.new
 
